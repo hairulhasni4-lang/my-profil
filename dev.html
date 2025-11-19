@@ -1,0 +1,1833 @@
+l
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.Khairul Hasani | Developer & Architect Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #a855f7;
+            --gold: #fbbf24;
+            --dark: #1a202c;
+            --dark-2: #2d3748;
+            --light: #f7fafc;
+            --text: #2d3748;
+            --text-light: #718096;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--gradient);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .logo h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            color: white;
+        }
+
+        .greeting {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .name {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .role {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .dual-expertise {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .expertise-badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        .expertise-badge i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .expertise-badge h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .expertise-badge p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.05rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .hero-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card h4 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Section Tabs */
+        .section-tabs {
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Section Common */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Web Development Section */
+        .coding-section {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(145deg, #f8fafc, #edf2f7);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 2rem;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: white;
+        }
+
+        .portfolio-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.6rem 1.5rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-small:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .portfolio-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary);
+        }
+
+        /* Architecture Design Section */
+        .architecture-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+        }
+
+        .design-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover,
+        .category-card.active {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #f8fafc, #edf2f7);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: white;
+            margin: 0 auto 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.6rem 0;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .service-features i {
+            color: var(--primary);
+        }
+
+        .service-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .contact .section-title,
+        .contact .section-subtitle {
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            align-items: start;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form .btn-primary {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 3rem 2rem;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero-content,
+            .contact-content,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .dual-expertise,
+            .hero-image {
+                grid-template-columns: 1fr;
+            }
+
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .role {
+                font-size: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid,
+            .skills-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="Kembali ke Menu">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">💻</div>
+                <h2>DevArchitect</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#coding">Coding</a></li>
+                <li><a href="#architecture">Desain Rumah</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact" class="btn-primary">Hubungi Saya</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="greeting">👋 Hello, I'm</p>
+                    <h1 class="name">M.Khairul Hasani</h1>
+                    <h2 class="role">Developer & Architect Designer</h2>
+                    <p class="tagline">
+                        Menggabungkan keahlian <strong>Web Development</strong> dengan 
+                        <strong>Architectural Design</strong> untuk menciptakan solusi digital 
+                        dan desain rumah yang luar biasa.
+                    </p>
+                    
+                    <div class="dual-expertise">
+                        <div class="expertise-badge">
+                            <i class="fas fa-code"></i>
+                            <h3>Full-Stack Dev</h3>
+                            <p>React, Node.js, MongoDB</p>
+                        </div>
+                        <div class="expertise-badge">
+                            <i class="fas fa-home"></i>
+                            <h3>Architect Design</h3>
+                            <p>3D Modeling & Rendering</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="#coding" class="btn btn-primary">Lihat Portfolio Coding</a>
+                        <a href="#architecture" class="btn btn-secondary">Lihat Desain Rumah</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h4>50+</h4>
+                        <p>Web Projects</p>
+                    </div>
+                    <div class="hero-card">
+                        <i class="fas fa-building"></i>
+                        <h4>30+</h4>
+                        <p>House Designs</p>
+                    </div>
+                    <div class="hero-card">
+                        <i class="fas fa-users"></i>
+                        <h4>100+</h4>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="hero-card">
+                        <i class="fas fa-award"></i>
+                        <h4>5+</h4>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Tabs -->
+    <div class="section-tabs">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="coding">
+                <i class="fas fa-code"></i>
+                <span>Web Development</span>
+            </button>
+            <button class="tab-btn" data-tab="architecture">
+                <i class="fas fa-home"></i>
+                <span>Desain Rumah</span>
+            </button>
+            <button class="tab-btn" data-tab="services">
+                <i class="fas fa-briefcase"></i>
+                <span>Services & Pricing</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Web Development Section -->
+    <section id="coding" class="coding-section">
+        <div class="container">
+            <h2 class="section-title">Web Development Skills</h2>
+            <p class="section-subtitle">Teknologi & Framework yang Saya Kuasai</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>React.js & Next.js</h3>
+                    <p>Membangun aplikasi web modern dengan React dan Next.js untuk performa optimal dan SEO friendly.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-node"></i>
+                    </div>
+                    <h3>Node.js & Express</h3>
+                    <p>Backend development dengan Node.js untuk API yang robust, scalable, dan secure.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Design</h3>
+                    <p>MongoDB, MySQL, PostgreSQL - desain database yang efisien dan terstruktur.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-figma"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Merancang interface yang intuitif dan user-friendly menggunakan Figma dan Adobe XD.</p>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 4rem;">Portfolio Web Development</h3>
+            <p class="section-subtitle">Project yang Telah Saya Kerjakan</p>
+
+            <div class="portfolio-grid">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=E-Commerce+Platform" alt="E-Commerce">
+                        <div class="portfolio-overlay">
+                            <h3>E-Commerce Platform</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">MongoDB</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Live Demo</a>
+                                <a href="#" class="btn-small">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-Commerce Full-Stack</h3>
+                        <p>Platform e-commerce lengkap dengan fitur cart, payment gateway, dan admin dashboard.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-eye"></i>
+                                <span>1.2k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/764ba2/ffffff?text=Real+Estate+Web" alt="Real Estate">
+                        <div class="portfolio-overlay">
+                            <h3>Real Estate Website</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">Next.js</span>
+                                <span class="tag">Tailwind</span>
+                                <span class="tag">Prisma</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Live Demo</a>
+                                <a href="#" class="btn-small">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Real Estate Listing</h3>
+                        <p>Website properti dengan fitur search, filter, maps integration, dan virtual tour.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-eye"></i>
+                                <span>890 views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/a855f7/ffffff?text=SaaS+Dashboard" alt="SaaS">
+                        <div class="portfolio-overlay">
+                            <h3>SaaS Dashboard</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">GraphQL</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Live Demo</a>
+                                <a href="#" class="btn-small">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>SaaS Admin Dashboard</h3>
+                        <p>Dashboard analytics dengan real-time data, charts, dan user management system.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2023</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-eye"></i>
+                                <span>1.5k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Design Section -->
+    <section id="architecture" class="architecture-section">
+        <div class="container">
+            <h2 class="section-title">Architectural Design</h2>
+            <p class="section-subtitle">Desain Rumah Impian Anda Menjadi Kenyataan</p>
+            
+            <div class="design-categories">
+                <div class="category-card active">
+                    <i class="fas fa-home"></i>
+                    <h4>Residential</h4>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-building"></i>
+                    <h4>Commercial</h4>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-couch"></i>
+                    <h4>Interior</h4>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-tree"></i>
+                    <h4>Landscape</h4>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-cube"></i>
+                    <h4>3D Rendering</h4>
+                </div>
+            </div>
+
+            <h3 class="section-title">Portfolio Desain Rumah</h3>
+            <p class="section-subtitle">Project Arsitektur yang Telah Saya Selesaikan</p>
+
+            <div class="portfolio-grid">
+                <!-- Architecture Portfolio 1 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/1e293b/ffffff?text=Modern+Minimalist+House" alt="Modern House">
+                        <div class="portfolio-overlay">
+                            <h3>Modern Minimalist House</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">2 Lantai</span>
+                                <span class="tag">180m²</span>
+                                <span class="tag">4 KT</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Lihat Detail</a>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20desain%20Modern%20Minimalist" class="btn-small">Konsultasi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Rumah Modern Minimalist</h3>
+                        <p>Desain rumah 2 lantai dengan konsep modern minimalist, dilengkapi rooftop garden dan carport.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Jakarta</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Portfolio 2 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/0f172a/ffffff?text=Tropical+Villa" alt="Tropical Villa">
+                        <div class="portfolio-overlay">
+                            <h3>Tropical Villa Design</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">1 Lantai</span>
+                                <span class="tag">250m²</span>
+                                <span class="tag">Pool</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Lihat Detail</a>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20desain%20Tropical%20Villa" class="btn-small">Konsultasi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Villa Tropical Modern</h3>
+                        <p>Villa dengan konsep tropical modern, swimming pool, dan taman yang asri di Bali.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bali</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Portfolio 3 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/334155/ffffff?text=Scandinavian+Interior" alt="Scandinavian">
+                        <div class="portfolio-overlay">
+                            <h3>Scandinavian Interior</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">Interior</span>
+                                <span class="tag">120m²</span>
+                                <span class="tag">Apartemen</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Lihat Detail</a>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20desain%20Scandinavian%20Interior" class="btn-small">Konsultasi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Scandinavian Interior Design</h3>
+                        <p>Interior apartemen dengan konsep Scandinavian yang warm, cozy, dan fungsional.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bandung</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Portfolio 4 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/475569/ffffff?text=Industrial+Loft" alt="Industrial">
+                        <div class="portfolio-overlay">
+                            <h3>Industrial Loft Concept</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">Loft</span>
+                                <span class="tag">150m²</span>
+                                <span class="tag">Open Plan</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Lihat Detail</a>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20desain%20Industrial%20Loft" class="btn-small">Konsultasi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Industrial Loft Design</h3>
+                        <p>Desain loft industrial dengan exposed brick, high ceiling, dan open floor plan.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Surabaya</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Portfolio 5 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/64748b/ffffff?text=Japanese+Style+House" alt="Japanese">
+                        <div class="portfolio-overlay">
+                            <h3>Japanese Zen House</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">1 Lantai</span>
+                                <span class="tag">160m²</span>
+                                <span class="tag">Zen Garden</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Lihat Detail</a>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20desain%20Japanese%20Zen" class="btn-small">Konsultasi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Japanese Zen Style</h3>
+                        <p>Rumah dengan konsep Japanese Zen, zen garden, sliding door, dan tatami room.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Yogyakarta</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Portfolio 6 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/94a3b8/ffffff?text=Classical+Mansion" alt="Classical">
+                        <div class="portfolio-overlay">
+                            <h3>Classical Mansion</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">3 Lantai</span>
+                                <span class="tag">400m²</span>
+                                <span class="tag">Luxury</span>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="#" class="btn-small">Lihat Detail</a>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20desain%20Classical%20Mansion" class="btn-small">Konsultasi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Classical Luxury Mansion</h3>
+                        <p>Mansion mewah dengan arsitektur klasik Eropa, kolam renang, dan home theater.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Jakarta</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Services & Pricing</h2>
+            <p class="section-subtitle">Layanan Profesional dengan Harga Kompetitif</p>
+            
+            <div class="services-grid">
+                <!-- Service 1: Web Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Pembuatan website profesional dari landing page hingga full-stack web application.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Responsive Design</li>
+                        <li><i class="fas fa-check"></i> SEO Optimized</li>
+                        <li><i class="fas fa-check"></i> Fast Loading</li>
+                        <li><i class="fas fa-check"></i> Admin Dashboard</li>
+                        <li><i class="fas fa-check"></i> Free Maintenance 3 Bulan</li>
+                    </ul>
+                    <div class="service-price">Mulai Rp 3jt</div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20jasa%20Web%20Development" class="btn btn-primary">Konsultasi Gratis</a>
+                </div>
+
+                <!-- Service 2: UI/UX Design -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Desain interface yang menarik dan user experience yang optimal untuk website/aplikasi Anda.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> User Research</li>
+                        <li><i class="fas fa-check"></i> Wireframing</li>
+                        <li><i class="fas fa-check"></i> Prototyping</li>
+                        <li><i class="fas fa-check"></i> Design System</li>
+                        <li><i class="fas fa-check"></i> Unlimited Revisi</li>
+                    </ul>
+                    <div class="service-price">Mulai Rp 2jt</div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20jasa%20UI/UX%20Design" class="btn btn-primary">Konsultasi Gratis</a>
+                </div>
+
+                <!-- Service 3: Architectural Design -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Desain Rumah</h3>
+                    <p>Jasa desain arsitektur rumah lengkap dengan gambar kerja dan 3D rendering.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Site Plan & Denah</li>
+                        <li><i class="fas fa-check"></i> Tampak & Potongan</li>
+                        <li><i class="fas fa-check"></i> 3D Exterior Rendering</li>
+                        <li><i class="fas fa-check"></i> RAB (Rencana Anggaran)</li>
+                        <li><i class="fas fa-check"></i> Revisi s/d Deal</li>
+                    </ul>
+                    <div class="service-price">Mulai Rp 5jt</div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20jasa%20Desain%20Rumah" class="btn btn-primary">Konsultasi Gratis</a>
+                </div>
+
+                <!-- Service 4: Interior Design -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Interior Design</h3>
+                    <p>Desain interior rumah, apartemen, kantor dengan konsep sesuai keinginan Anda.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Layout & Floor Plan</li>
+                        <li><i class="fas fa-check"></i> 3D Interior Rendering</li>
+                        <li><i class="fas fa-check"></i> Furniture Selection</li>
+                        <li><i class="fas fa-check"></i> Material & Color Palette</li>
+                        <li><i class="fas fa-check"></i> Shopping List</li>
+                    </ul>
+                    <div class="service-price">Mulai Rp 4jt</div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20jasa%20Interior%20Design" class="btn btn-primary">Konsultasi Gratis</a>
+                </div>
+
+                <!-- Service 5: 3D Rendering -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3D Rendering</h3>
+                    <p>Visualisasi 3D photorealistic untuk presentasi project arsitektur atau interior Anda.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Photorealistic Quality</li>
+                        <li><i class="fas fa-check"></i> Day & Night View</li>
+                        <li><i class="fas fa-check"></i> Multiple Angles</li>
+                        <li><i class="fas fa-check"></i> High Resolution</li>
+                        <li><i class="fas fa-check"></i> Fast Delivery</li>
+                    </ul>
+                    <div class="service-price">Mulai Rp 1.5jt</div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20jasa%203D%20Rendering" class="btn btn-primary">Konsultasi Gratis</a>
+                </div>
+
+                <!-- Service 6: Consultation -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Konsultasi Online</h3>
+                    <p>Konsultasi personal untuk diskusi ide project web development atau desain rumah Anda.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 1-on-1 Video Call</li>
+                        <li><i class="fas fa-check"></i> 60 Menit Session</li>
+                        <li><i class="fas fa-check"></i> Expert Advice</li>
+                        <li><i class="fas fa-check"></i> Action Plan</li>
+                        <li><i class="fas fa-check"></i> Follow-up Support</li>
+                    </ul>
+                    <div class="service-price">Rp 500k/sesi</div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20booking%20konsultasi" class="btn btn-primary">Book Session</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Mari Wujudkan Project Anda!</h2>
+            <p class="section-subtitle">Hubungi saya untuk diskusi lebih lanjut tentang project Anda</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p>@yourinstagram</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Lokasi</h4>
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/username" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://dribbble.com/username" target="_blank"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://behance.net/username" target="_blank"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nomor WhatsApp</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis Layanan</label>
+                            <select name="service" required>
+                                <option value="">-- Pilih Layanan --</option>
+                                <option value="web">Web Development</option>
+                                <option value="uiux">UI/UX Design</option>
+                                <option value="architecture">Desain Rumah</option>
+                                <option value="interior">Interior Design</option>
+                                <option value="rendering">3D Rendering</option>
+                                <option value="consultation">Konsultasi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Project</label>
+                        <textarea name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>DevArchitect</h3>
+                    <p>
+                        Menggabungkan passion dalam web development dan architectural design 
+                        untuk menciptakan solusi digital dan desain rumah yang luar biasa.
+                    </p>
+                    <div class="social-links" style="margin-top: 1.5rem;">
+                        <a href="https://github.com/username" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/username" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://dribbble.com/username" target="_blank"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Web Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#coding">Web Development</a></li>
+                        <li><a href="#coding">UI/UX Design</a></li>
+                        <li><a href="#services">E-Commerce</a></li>
+                        <li><a href="#services">Mobile App</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Design Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#architecture">Desain Rumah</a></li>
+                        <li><a href="#architecture">Interior Design</a></li>
+                        <li><a href="#architecture">3D Rendering</a></li>
+                        <li><a href="#services">Landscape</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevArchitect. Made with ❤️ by Hairul Hasani</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Tab Switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const tab = btn.dataset.tab;
+                const targetSection = document.getElementById(tab);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Category Filter
+        const categoryCards = document.querySelectorAll('.category-card');
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                categoryCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Redirect to WhatsApp with message
+            const phone = '6281234567890'; // Ganti dengan nomor Anda
+            const message = `Halo, saya ${data.name}.\n\nSaya tertarik dengan layanan: ${data.service}\n\nDeskripsi Project:\n${data.message}\n\nEmail: ${data.email}\nWhatsApp: ${data.phone}`;
+            
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+            
+            alert('Terima kasih! Anda akan diarahkan ke WhatsApp.');
+            contactForm.reset();
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.skill-card, .portfolio-item, .service-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

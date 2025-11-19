@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop | Hairul Hasani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #0a0a0a;
+            --dark-2: #1a1a1a;
+            --dark-3: #2a2a2a;
+            --purple: #9333ea;
+            --blue: #667eea;
+            --gold: #fbbf24;
+            --green: #10b981;
+            --orange: #f97316;
+            --pink: #ec4899;
+            --gradient: linear-gradient(135deg, #9333ea 0%, #667eea 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: #e5e5e5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--gradient);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.6);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 100%);
+            padding: 6rem 2rem 3rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .shop-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #a3a3a3;
+            margin-bottom: 2rem;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.6rem 1.5rem;
+            background: rgba(147, 51, 234, 0.1);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge i {
+            color: var(--green);
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 2rem;
+            background: var(--dark-2);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            color: #a3a3a3;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title i {
+            color: var(--purple);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: linear-gradient(145deg, var(--dark-2), var(--dark-3));
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(147, 51, 234, 0.3);
+            border-color: var(--purple);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 0.4rem 1rem;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-badge.hot {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .product-badge.new {
+            background: linear-gradient(135deg, var(--green), #059669);
+        }
+
+        .product-badge.sale {
+            background: linear-gradient(135deg, var(--orange), #ea580c);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 20px rgba(251, 191, 36, 0.4);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--purple);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .product-description {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            padding: 0.4rem 0;
+            color: #d4d4d4;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-features i {
+            color: var(--green);
+            font-size: 0.8rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .product-price {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .price-old {
+            color: #666;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .price-current {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.9rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+
+        .btn-shopee {
+            background: linear-gradient(135deg, #ee4d2d, #ff6b3d);
+            color: white;
+        }
+
+        .btn-shopee:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(238, 77, 45, 0.4);
+        }
+
+        .btn-tokopedia {
+            background: linear-gradient(135deg, #42b549, #3ba03d);
+            color: white;
+        }
+
+        .btn-tokopedia:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(66, 181, 73, 0.4);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #20ba5a);
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-link {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+        }
+
+        /* Rating */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--gold);
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .rating-count {
+            color: #a3a3a3;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-2);
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #a3a3a3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(147, 51, 234, 0.1);
+            color: var(--purple);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(147, 51, 234, 0.1);
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .product-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="Kembali ke Menu">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="shop-icon">
+                🛒
+            </div>
+            <h1>Online Shop</h1>
+            <p>Produk Digital, Course, dan Merchandise Berkualitas dengan Harga Terbaik</p>
+            <div class="header-badges">
+                <div class="badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Produk Original</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Garansi 100%</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Fast Response</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th"></i> Semua Produk
+            </button>
+            <button class="filter-btn" data-filter="digital">
+                <i class="fas fa-laptop-code"></i> Produk Digital
+            </button>
+            <button class="filter-btn" data-filter="course">
+                <i class="fas fa-graduation-cap"></i> Course Premium
+            </button>
+            <button class="filter-btn" data-filter="ebook">
+                <i class="fas fa-book"></i> E-Book
+            </button>
+            <button class="filter-btn" data-filter="merch">
+                <i class="fas fa-tshirt"></i> Merchandise
+            </button>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-section">
+        
+        <!-- Digital Products -->
+        <h2 class="section-title">
+            <i class="fas fa-fire"></i>
+            Produk Digital Premium
+        </h2>
+        <div class="products-grid" data-category="digital">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/9333ea/ffffff?text=Trading+Bot" alt="Trading Bot">
+                    <span class="product-badge hot">Hot</span>
+                    <div class="discount-badge">
+                        <div>30%</div>
+                        <div style="font-size: 0.7rem;">OFF</div>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Produk Digital</div>
+                    <h3 class="product-title">Crypto Trading Bot Premium</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-count">(127 reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        Bot trading otomatis dengan AI yang sudah teruji menghasilkan profit konsisten.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Auto Trading 24/7</li>
+                        <li><i class="fas fa-check"></i> Win Rate 75%+</li>
+                        <li><i class="fas fa-check"></i> Free Update Lifetime</li>
+                        <li><i class="fas fa-check"></i> Tutorial Lengkap</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-old">Rp 2.500.000</span>
+                            <span class="price-current">Rp 1.750.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://shopee.co.id/product/xxx" target="_blank" class="btn btn-shopee">
+                            <i class="fab fa-shopee"></i> Shopee
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20beli%20Trading%20Bot" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Website+Template" alt="Website Template">
+                    <span class="product-badge new">New</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Produk Digital</div>
+                    <h3 class="product-title">Premium Website Template Pack</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">(89 reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        20+ template website modern siap pakai untuk berbagai keperluan bisnis.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 20+ Template Premium</li>
+                        <li><i class="fas fa-check"></i> Responsive Design</li>
+                        <li><i class="fas fa-check"></i> SEO Optimized</li>
+                        <li><i class="fas fa-check"></i> Full Documentation</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 850.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://tokopedia.com/product/xxx" target="_blank" class="btn btn-tokopedia">
+                            <i class="fas fa-shopping-bag"></i> Tokopedia
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20beli%20Template%20Pack" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/10b981/ffffff?text=Indicator+Pack" alt="Indicator Pack">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="discount-badge">
+                        <div>50%</div>
+                        <div style="font-size: 0.7rem;">OFF</div>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Produk Digital</div>
+                    <h3 class="product-title">Professional Indicator Pack</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-count">(203 reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        Kumpulan 15+ custom indicator untuk TradingView dan MT4/MT5.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 15+ Custom Indicator</li>
+                        <li><i class="fas fa-check"></i> Support TradingView & MT5</li>
+                        <li><i class="fas fa-check"></i> Signal Akurat</li>
+                        <li><i class="fas fa-check"></i> Video Tutorial</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-old">Rp 1.000.000</span>
+                            <span class="price-current">Rp 500.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://shopee.co.id/product/xxx" target="_blank" class="btn btn-shopee">
+                            <i class="fab fa-shopee"></i> Shopee
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20beli%20Indicator%20Pack" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Course Section -->
+        <h2 class="section-title">
+            <i class="fas fa-graduation-cap"></i>
+            Online Course Premium
+        </h2>
+        <div class="products-grid" data-category="course">
+            
+            <!-- Course 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/f97316/ffffff?text=Trading+Masterclass" alt="Trading Course">
+                    <span class="product-badge hot">Bestseller</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Online Course</div>
+                    <h3 class="product-title">Crypto Trading Masterclass</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-count">(456 students)</span>
+                    </div>
+                    <p class="product-description">
+                        Belajar trading crypto dari nol sampai bisa profit konsisten.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 50+ Video Lessons</li>
+                        <li><i class="fas fa-check"></i> Private Telegram Group</li>
+                        <li><i class="fas fa-check"></i> Live Trading Session</li>
+                        <li><i class="fas fa-check"></i> Lifetime Access</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 1.500.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20join%20Trading%20Masterclass" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/ec4899/ffffff?text=Web+Development" alt="Web Dev Course">
+                    <span class="product-badge new">New</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Online Course</div>
+                    <h3 class="product-title">Full-Stack Web Development</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">(234 students)</span>
+                    </div>
+                    <p class="product-description">
+                        Menjadi Full-Stack Developer profesional dengan React & Node.js.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 80+ Video HD</li>
+                        <li><i class="fas fa-check"></i> 10+ Real Projects</li>
+                        <li><i class="fas fa-check"></i> Mentoring Support</li>
+                        <li><i class="fas fa-check"></i> Certificate</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 2.000.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20join%20Web%20Dev%20Course" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/6b21a8/ffffff?text=Passive+Income" alt="Passive Income">
+                    <span class="product-badge">Premium</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Online Course</div>
+                    <h3 class="product-title">Passive Income Blueprint</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-count">(178 students)</span>
+                    </div>
+                    <p class="product-description">
+                        Strategi membangun passive income dari berbagai sumber.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 30+ Strategies</li>
+                        <li><i class="fas fa-check"></i> Case Studies</li>
+                        <li><i class="fas fa-check"></i> Monthly Webinar</li>
+                        <li><i class="fas fa-check"></i> Community Access</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 1.200.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20join%20Passive%20Income%20Course" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- E-Books Section -->
+        <h2 class="section-title">
+            <i class="fas fa-book"></i>
+            E-Book & Guides
+        </h2>
+        <div class="products-grid" data-category="ebook">
+            
+            <!-- E-Book 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/fbbf24/000000?text=Trading+Psychology" alt="E-Book">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">E-Book</div>
+                    <h3 class="product-title">Trading Psychology Mastery</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-count">(567 sold)</span>
+                    </div>
+                    <p class="product-description">
+                        Panduan lengkap menguasai mindset dan psikologi trading.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 150+ Pages PDF</li>
+                        <li><i class="fas fa-check"></i> Bonus Checklist</li>
+                        <li><i class="fas fa-check"></i> Actionable Tips</li>
+                        <li><i class="fas fa-check"></i> Free Updates</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 150.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://shopee.co.id/product/xxx" target="_blank" class="btn btn-shopee">
+                            <i class="fab fa-shopee"></i> Beli di Shopee
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20beli%20E-Book%20Trading%20Psychology" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-Book 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/3b82f6/ffffff?text=Coding+Guide" alt="Coding Guide">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">E-Book</div>
+                    <h3 class="product-title">JavaScript Modern Complete Guide</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">(312 sold)</span>
+                    </div>
+                    <p class="product-description">
+                        Panduan lengkap belajar JavaScript dari dasar hingga advanced.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 200+ Pages</li>
+                        <li><i class="fas fa-check"></i> Code Examples</li>
+                        <li><i class="fas fa-check"></i> Best Practices</li>
+                        <li><i class="fas fa-check"></i> Bonus Projects</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 200.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://tokopedia.com/product/xxx" target="_blank" class="btn btn-tokopedia">
+                            <i class="fas fa-shopping-bag"></i> Tokopedia
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20beli%20E-Book%20JavaScript" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Merchandise Section -->
+        <h2 class="section-title">
+            <i class="fas fa-tshirt"></i>
+            Merchandise Eksklusif
+        </h2>
+        <div class="products-grid" data-category="merch">
+            
+            <!-- Merch 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/000000/ffffff?text=Trader+T-Shirt" alt="T-Shirt">
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Merchandise</div>
+                    <h3 class="product-title">Premium Trader T-Shirt</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-count">(89 sold)</span>
+                    </div>
+                    <p class="product-description">
+                        T-shirt premium dengan design eksklusif untuk trader.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Cotton Combed 30s</li>
+                        <li><i class="fas fa-check"></i> Sablon DTG Premium</li>
+                        <li><i class="fas fa-check"></i> Size S-XXL</li>
+                        <li><i class="fas fa-check"></i> Limited Edition</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 150.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://shopee.co.id/product/xxx" target="_blank" class="btn btn-shopee">
+                            <i class="fab fa-shopee"></i> Beli di Shopee
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Merch 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/1e293b/ffffff?text=Developer+Hoodie" alt="Hoodie">
+                    <span class="product-badge new">New</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Merchandise</div>
+                    <h3 class="product-title">Coder Hoodie Premium</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">(45 sold)</span>
+                    </div>
+                    <p class="product-description">
+                        Hoodie nyaman untuk coding session marathon Anda.
+                    </p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Fleece Premium</li>
+                        <li><i class="fas fa-check"></i> Exclusive Design</li>
+                        <li><i class="fas fa-check"></i> Size M-XXL</li>
+                        <li><i class="fas fa-check"></i> Unisex</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-current">Rp 300.000</span>
+                        </div>
+                    </div>
+                    <div class="product-buttons">
+                        <a href="https://tokopedia.com/product/xxx" target="_blank" class="btn btn-tokopedia">
+                            <i class="fas fa-shopping-bag"></i> Tokopedia
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tentang Toko</h3>
+                <p style="color: #a3a3a3; line-height: 1.8;">
+                    Menyediakan produk digital berkualitas, course premium, 
+                    dan merchandise eksklusif untuk membantu Anda berkembang.
+                </p>
+                <div class="social-links" style="margin-top: 1.5rem;">
+                    <a href="https://wa.me/6281234567890" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://instagram.com/username" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://t.me/username" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="mailto:email@example.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Kategori</h3>
+                <ul class="footer-links">
+                    <li><a href="#digital">Produk Digital</a></li>
+                    <li><a href="#course">Online Course</a></li>
+                    <li><a href="#ebook">E-Book & Guides</a></li>
+                    <li><a href="#merch">Merchandise</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Marketplace</h3>
+                <ul class="footer-links">
+                    <li><a href="https://shopee.co.id/username" target="_blank">Shopee Official</a></li>
+                    <li><a href="https://tokopedia.com/username" target="_blank">Tokopedia Official</a></li>
+                    <li><a href="https://wa.me/6281234567890" target="_blank">Order via WhatsApp</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Bantuan</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Metode Pembayaran</a></li>
+                    <li><a href="#">Kebijakan Refund</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hairul hasani. All Rights Reserved. Made with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                // Show/hide products based on filter
+                document.querySelectorAll('.products-grid').forEach(grid => {
+                    const category = grid.dataset.category;
+                    if (filter === 'all') {
+                        grid.style.display = 'grid';
+                        grid.previousElementSibling.style.display = 'flex';
+                    } else if (category === filter) {
+                        grid.style.display = 'grid';
+                        grid.previousElementSibling.style.display = 'flex';
+                    } else {
+                        grid.style.display = 'none';
+                        grid.previousElementSibling.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to cart animation (optional)
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'rgba(255,255,255,0.5)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+</html>
